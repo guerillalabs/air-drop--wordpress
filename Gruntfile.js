@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         sass: {
             dist: {
                 options: {
-                    style: 'compressed',
+                    outputStyle: 'compressed',
                     sourcemap: 'true'
                 },
                 files: [{
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['sass', 'autoprefixer', 'concat', 'uglify', 'watch']);
 
     // plugin tasks
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');

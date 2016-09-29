@@ -12,7 +12,7 @@ These items must be installed on your computer:
 
 * [Node.js](http://nodejs.org)
 * [Bower](http://bower.io)
-* [Sass](http://sass-lang.com)
+* [LibSass](http://sass-lang.com/libsass)
 * [grunt-cli](http://gruntjs.com/getting-started#installing-the-cli)
 
 ## Getting Started
