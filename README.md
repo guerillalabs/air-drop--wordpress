@@ -59,6 +59,12 @@ OR
 * Search for: <code>&nbsp;_s</code> and replace with: <code>&nbsp;Megatherium</code>
 * Search for: `_s-` and replace with: `megatherium-`
 
+### Setting up a symbolic link
+
+We find symbolic links are the best way to develop themes locally. You'll setup a symbolic link within the `themes` folder of your WordPress install to the directory of this theme. When within the themes directory in terminal, use the following command (tip 1 - drag the folder for this theme to the terminal window to get the path. tip 2 - for the symlink path, since you are already in the directory, just enter something like 'my-theme'.):
+
+`ln -s /path/to/original /path/to/symlink`
+
 ## Adding JavaScript Libraries
 
 To add a new JavaScript library – either home-grown or third-party – you'll want to edit `Gruntfile.js`. In the concat task, you'll find something like this:
