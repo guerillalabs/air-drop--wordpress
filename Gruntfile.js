@@ -20,13 +20,14 @@ module.exports = function(grunt) {
                     ]
                 }
             }
-        }
+        },
 
         sass: {
             dist: {
                 options: {
                     outputStyle: 'compressed',
-                    sourcemap: 'true'
+                    sourceMap: true,
+                    sourceMapEmbed: false
                 },
                 files: [{
                     expand: true,
