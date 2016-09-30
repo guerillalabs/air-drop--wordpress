@@ -2,6 +2,3 @@ _site/
 .sass-cache/
 .DS_Store
 node_modules/
-vendor/
-css/
-sass/*

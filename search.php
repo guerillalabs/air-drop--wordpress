@@ -10,7 +10,6 @@
 get_header(); ?>
 
 	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
 
 		<?php
 		if ( have_posts() ) : ?>
@@ -28,7 +27,7 @@ get_header(); ?>
 				 * If you want to overload this in a child theme then include a file
 				 * called content-search.php and that will be used instead.
 				 */
-				get_template_part( 'template-parts/content', 'search' );
+				get_template_part( 'partials/content', 'search' );
 
 			endwhile;
 
@@ -36,11 +35,10 @@ get_header(); ?>
 
 		else :
 
-			get_template_part( 'template-parts/content', 'none' );
+			get_template_part( 'partials/content', 'none' );
 
 		endif; ?>
 
-		</main><!-- #main -->
 	</section><!-- #primary -->
 
 <?php

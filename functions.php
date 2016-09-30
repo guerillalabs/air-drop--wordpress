@@ -59,26 +59,82 @@ function _s_setup() {
 		'caption',
 	) );
 
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( '_s_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
+    /* remove some links in the head */
+    remove_action('wp_head', 'start_post_rel_link_wp_head', 10, 0 );
+    remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+    remove_action('wp_head', 'parent_post_rel_link_wp_head', 10, 0);
+    remove_action('wp_head', 'wp_generator');
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'wp_shortlink_wp_head');
+    remove_action('wp_head', 'rel_canonical');
+
+    /* image sizes */
+    // update_option( 'thumbnail_size_w', 150 );
+    // update_option( 'thumbnail_size_h', 150 );
+
+    // update_option( 'medium_size_w', 768 );
+    // update_option( 'medium_size_h', 1310 );
+
+    // update_option( 'large_size_w', 1200 );
+    // update_option( 'large_size_h', 2048 );
+    /* custom image size */
+    // add_image_size( 'small', 480, 820 );
 }
 endif;
 add_action( 'after_setup_theme', '_s_setup' );
 
+
+
+
 /**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
+ * Enqueue scripts and styles.
  */
-function _s_content_width() {
-	$GLOBALS['content_width'] = apply_filters( '_s_content_width', 640 );
+function _s_scripts() {
+    // wp_dequeue_script( 'devicepx' );
+    // wp_deregister_script( 'wp-embed' );
+    wp_deregister_script('jquery');
+    wp_register_script('jquery', '//code.jquery.com/jquery-3.1.1.min.js', array(), '3.1.1', true);
+    wp_enqueue_script('jquery');
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
-add_action( 'after_setup_theme', '_s_content_width', 0 );
+add_action( 'wp_enqueue_scripts', '_s_scripts' );
+
+/**
+ * Remove emoji detection, scripts and styles
+ */
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
+
+
+
+/**
+ * Advanced Custom Fields Options Page
+ */
+// if( function_exists('acf_add_options_page') ) {
+
+//     acf_add_options_sub_page(array(
+//         'page_title'    => 'Sale Bar Settings',
+//         'menu_title'    => 'Sale Bar',
+//         'menu_slug'   => 'theme-sale-settings',
+//     ));
+
+//     acf_add_options_sub_page(array(
+//         'page_title'    => 'Footer Settings',
+//         'menu_title'    => 'Footer',
+//         'menu_slug'   => 'theme-footer-settings',
+//     ));
+
+// }
+
+
+
 
 /**
  * Register widget area.
@@ -98,26 +154,9 @@ function _s_widgets_init() {
 }
 add_action( 'widgets_init', '_s_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
-function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
-	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', '_s_scripts' );
-
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
