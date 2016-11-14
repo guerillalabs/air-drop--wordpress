@@ -7,7 +7,7 @@
         <div class="branding"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></div>
         <?php endif; ?>
 
-        <nav class="site-nav">
+        <nav class="site-nav" role="navigation">
             <?php get_template_part( 'partials/nav', 'primary' ); ?>
         </nav>
 

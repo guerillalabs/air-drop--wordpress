@@ -1,7 +1,9 @@
         </main>
 
-        <footer class="site-footer">
-
+        <footer class="site-footer" role="contentinfo">
+            <div class="container">
+            © <?php echo date("Y"); ?>. All Rights Reserved
+            </div>
         </footer>
 
         <!-- javascript -->
